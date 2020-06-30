@@ -22,12 +22,10 @@ public class Tweet {
     // empty constructor needed by the Parceler library
     public Tweet(){}
 
-    // empty constructor needed by the Parceler library
-    public Tweet(){}
+
 
     public static Tweet fromJson (JSONObject jsonObject) throws JSONException {
         Tweet tweet = new Tweet();
-<<<<<<< HEAD
 
         //extract the values from JSON
         try {
@@ -48,12 +46,7 @@ public class Tweet {
         Log.d("Debug","Tweets " + tweet.toString());
 
 
-=======
-        tweet.body = jsonObject.getString("text");
-        tweet.createdAt = jsonObject.getString("created_at");
-        tweet.id = jsonObject.getLong("id");
-        tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
->>>>>>> b600e65cab9e6d853b355aef5395c895d13a4d50
+
         return tweet;
     }
 

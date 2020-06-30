@@ -24,6 +24,9 @@ The following **required** functionality is completed:
   * [ ] User can then enter a new tweet and post this to twitter
   * [ ] User is taken back to home timeline with **new tweet visible** in timeline
   * [ ] Newly created tweet should be manually inserted into the timeline and not rely on a full refresh
+<<<<<<< HEAD
+>>>>>>> b600e65cab9e6d853b355aef5395c895d13a4d50
+=======
 >>>>>>> b600e65cab9e6d853b355aef5395c895d13a4d50
 * [x] User can **see a counter with total number of characters left for tweet** on compose tweet page
 * [x] User can **pull down to refresh tweets timeline**

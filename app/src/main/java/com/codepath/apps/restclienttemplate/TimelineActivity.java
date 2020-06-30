@@ -109,17 +109,13 @@ public class TimelineActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-<<<<<<< HEAD
+
         if(REQUEST_CODE == requestCode && resultCode == RESULT_OK){
             //Get data from the intent (tweet)
             Tweet tweet = (Tweet) Parcels.unwrap(data.getParcelableExtra("tweet"));
             Log.i(TAG, tweet.body);
-=======
-        if(REQUEST_CODE == requestCode && requestCode == RESULT_OK){
-            //Get data from the intent (tweet)
-            Tweet tweet = Parcels.unwrap(data.getParcelableExtra("tweet"));
-            Log.i(TAG, tweet.toString());
->>>>>>> b600e65cab9e6d853b355aef5395c895d13a4d50
+
+
             //Update recycler view w/ new tweet
             //Modify data source of tweet
             tweets.add(0, tweet);

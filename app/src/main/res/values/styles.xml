@@ -13,4 +13,13 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+    <style name="counterText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@android:color/darker_gray</item>
+    </style>
+
+    <style name="counterOverride" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+
 </resources>

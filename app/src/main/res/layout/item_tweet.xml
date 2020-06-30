@@ -43,4 +43,17 @@
         android:layout_alignParentEnd="true"
         tools:text="6m"
         android:textSize="10sp" />
+
+    <ImageView
+        android:id="@+id/ivMedia"
+        android:layout_width="300dp"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        android:layout_height="200dp"
+        android:layout_below="@+id/tvBody"
+
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@+id/ivProfileImage"
+        android:visibility="gone"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
 </RelativeLayout>

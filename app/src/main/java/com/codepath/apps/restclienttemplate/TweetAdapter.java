@@ -2,6 +2,7 @@ package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
+
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
     Context context;
@@ -86,6 +89,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         ImageView ivProfileImage;
+        ImageView ivMedia;
         TextView tvScreenName;
         TextView tvBody;
         TextView tvTime;
@@ -93,9 +97,11 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
+            ivMedia = itemView.findViewById(R.id.ivMedia);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             tvBody = itemView.findViewById(R.id.tvBody);
-            tvTime = (TextView) itemView.findViewById(R.id.tvTime);
+            tvTime = itemView.findViewById(R.id.tvTime);
+
         }
 
         public void bind (Tweet tweet){
@@ -103,6 +109,15 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
             tvScreenName.setText(tweet.user.screenName);
             tvTime.setText(getRelativeTimeAgo(tweet.createdAt));
             Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
+
+            if (tweet.media!=null && tweet.media.getType().equals("photo")){
+                ivMedia.setVisibility(View.VISIBLE);
+                Glide.with(context)
+                       .load(tweet.media.getMediaUrl())
+                        .centerCrop().transform(new RoundedCornersTransformation(30, 10))
+                        .into(ivMedia);
+                Log.i("TweetAdapter", tweet.media.toString());
+            }
         }
     }
 }

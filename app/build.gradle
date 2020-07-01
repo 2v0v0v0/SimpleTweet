@@ -5,6 +5,7 @@ def apikeyProperties = new Properties()
 apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
 
 android {
+
     compileSdkVersion 30
 
     defaultConfig {
@@ -36,13 +37,16 @@ android {
     }
 
 
-
     buildFeatures {
         viewBinding true
     }
 
-
-
+    allprojects {
+        repositories {
+            google()
+            jcenter()
+        }
+    }
 
     buildToolsVersion '29.0.2'
 

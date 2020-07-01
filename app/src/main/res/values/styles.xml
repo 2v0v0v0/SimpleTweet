@@ -18,7 +18,7 @@
     </style>
 
     <style name="counterOverride" parent="TextAppearance.AppCompat">
-        <item name="android:textColor">@color/red</item>
+        <item name="android:textColor">@color/medium_red</item>
     </style>
 
 

@@ -1,6 +1,13 @@
 package com.codepath.apps.restclienttemplate.models;
 
+import android.provider.ContactsContract;
 import android.util.Log;
+
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -11,12 +18,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Parcel
+@Entity(foreignKeys = @ForeignKey(entity=User.class, parentColumns="id", childColumns="userId"))
 public class Tweet {
-    public String body;
-    public String createdAt;
+    @ColumnInfo
+    @PrimaryKey
     public long id;
+
+    @ColumnInfo
+    public String createdAt;
+
+    @ColumnInfo
+    public String body;
+
+    @Ignore
     public User user;
-    public Media media;
+
+    @ColumnInfo
+    public Long userId;
+
+    @ColumnInfo
+    public String mediaType;
+
+    @ColumnInfo
+    public String mediaUrl;
+
 
 
     // empty constructor needed by the Parceler library
@@ -26,25 +51,27 @@ public class Tweet {
 
     public static Tweet fromJson (JSONObject jsonObject) throws JSONException {
         Tweet tweet = new Tweet();
-
         //extract the values from JSON
         try {
             tweet.body = jsonObject.getString("text");
             tweet.createdAt = jsonObject.getString("created_at");
             tweet.id = jsonObject.getLong("id");
-            tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
-            JSONObject objMedias = jsonObject.getJSONObject("entities");
-            if(objMedias!=null) {
-                JSONArray jsonMedias = objMedias.getJSONArray("media");
-                if(jsonMedias != null ) {
-                    tweet.media = Media.fromJSON(jsonMedias.getJSONObject(0));
+            User user = User.fromJson(jsonObject.getJSONObject("user"));
+            tweet.user = user;
+            tweet.userId = user.id;
+            JSONObject entities = jsonObject.getJSONObject("entities");
+            //JSONArray media= entities.getJSONArray("media");
+            if(entities!=null) {
+                JSONArray media = entities.getJSONArray("media");
+                if(media != null ) {
+                    tweet.mediaType = media.getJSONObject(0).getString("type");
+                    tweet.mediaUrl = media.getJSONObject(0).getString("media_url_https");
                 }
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
         Log.d("Debug","Tweets " + tweet.toString());
-
 
 
         return tweet;

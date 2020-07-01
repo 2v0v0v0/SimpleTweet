@@ -110,13 +110,13 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
             tvTime.setText(getRelativeTimeAgo(tweet.createdAt));
             Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
 
-            if (tweet.media!=null && tweet.media.getType().equals("photo")){
+            if (tweet.mediaUrl!=null && tweet.mediaType.equals("photo")){
                 ivMedia.setVisibility(View.VISIBLE);
                 Glide.with(context)
-                       .load(tweet.media.getMediaUrl())
+                       .load(tweet.mediaUrl)
                         .centerCrop().transform(new RoundedCornersTransformation(30, 10))
                         .into(ivMedia);
-                Log.i("TweetAdapter", tweet.media.toString());
+                Log.i("TweetAdapter", tweet.toString());
             }
         }
     }

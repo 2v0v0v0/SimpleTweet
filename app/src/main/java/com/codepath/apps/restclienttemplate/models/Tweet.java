@@ -60,18 +60,20 @@ public class Tweet {
             tweet.user = user;
             tweet.userId = user.id;
             JSONObject entities = jsonObject.getJSONObject("entities");
-            //JSONArray media= entities.getJSONArray("media");
             if(entities!=null) {
                 JSONArray media = entities.getJSONArray("media");
                 if(media != null ) {
                     tweet.mediaType = media.getJSONObject(0).getString("type");
                     tweet.mediaUrl = media.getJSONObject(0).getString("media_url_https");
                 }
+            } else {
+                tweet.mediaType=null;
+                tweet.mediaUrl= null;
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.d("Debug","Tweets " + tweet.toString());
+        Log.d("Debug","Tweets " +tweet.id+","+ tweet.toString());
 
 
         return tweet;
@@ -83,5 +85,13 @@ public class Tweet {
             tweets.add(fromJson(jsonArray.getJSONObject(i)));
         }
         return tweets;
+    }
+
+    @Override
+    public String toString() {
+        if(mediaUrl != null){
+            return "Tweet{" + body + ", " +mediaUrl +", "+ mediaType+"}";
+        }
+        return "Tweet{ }\n";
     }
 }

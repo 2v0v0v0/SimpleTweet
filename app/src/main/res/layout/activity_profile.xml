@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.ProfileActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:id="@+id/accInfo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/twitter_blue">
+                <ImageView
+                    android:id="@+id/profile_pic"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_margin="10dp"
+                    tools:srcCompat="@tools:sample/avatars" />
+                <TextView
+                    android:id="@+id/tvScreenName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvName"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/profile_pic"
+                    android:textSize="20sp"
+                    tools:text="vThu123" />
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toEndOf="@+id/profile_pic"
+                    android:fontFamily="sans-serif-black"
+                    android:textSize="22sp"
+                    tools:text="vThu123" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/profile_pic"
+                    android:layout_marginStart="5dp"
+                    android:layout_below="@+id/tvScreenName">
+                    <TextView
+                        android:id="@+id/followingNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        tools:text="200"
+                        android:textStyle="bold"
+                        android:paddingTop="15dp"
+                        android:paddingEnd="5dp"/>
+                    <TextView
+                        android:id="@+id/following"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:text="Following"
+                        android:paddingTop="15dp"/>
+                    <TextView
+                        android:id="@+id/followerNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        tools:text="100"
+                        android:textStyle="bold"
+                        android:paddingTop="15dp"
+                        android:paddingEnd="5dp"
+                        android:paddingStart="10dp"/>
+                    <TextView
+                        android:id="@+id/follower"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:text="Followers"
+                        android:paddingTop="15dp"/>
+                </LinearLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/medium_gray_50">
+                <TextView
+                    android:id="@+id/descriptionText"
+                    android:layout_marginStart="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    tools:text="My name is >>>, I'm an >>> at >>>"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

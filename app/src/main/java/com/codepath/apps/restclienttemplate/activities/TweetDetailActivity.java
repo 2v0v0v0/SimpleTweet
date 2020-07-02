@@ -17,6 +17,7 @@ import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.databinding.ActivityTweetDetailBinding;
 import com.codepath.apps.restclienttemplate.models.Time;
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.codepath.apps.restclienttemplate.models.User;
 
 import org.parceler.Parcels;
 
@@ -25,9 +26,8 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 public class TweetDetailActivity extends AppCompatActivity {
     public static final String TAG = "TweetDetailActivity";
     public static final int RADIUS = 30;
-    public static final int MARGIN = 10;
-    private final int COMPOSE_REQUEST_CODE = 20;
-    Tweet tweet = null;
+    public static final int MARGIN = 0;
+    Tweet tweet ;
 
 
     @Override
@@ -55,7 +55,7 @@ public class TweetDetailActivity extends AppCompatActivity {
             }
         }
 
-        Glide.with(getApplicationContext()).load(tweet.user.profileImageUrl).into(binding.ivProfileImage);
+        Glide.with(getApplicationContext()).load(tweet.user.profileImageUrl).transform(new RoundedCornersTransformation(100, MARGIN)).into(binding.ivProfileImage);
         binding.tvBody.setText(tweet.body);
         binding.tvName.setText(tweet.user.name);
         binding.tvScreenName.setText("@" + tweet.user.screenName);
@@ -88,7 +88,12 @@ public class TweetDetailActivity extends AppCompatActivity {
         i.putExtra("reply_to_name", tweet.user.screenName);
         startActivity(i);
         finish();
+    }
 
+    public void onProfile(View view){
+        Intent p = new Intent(this, ProfileActivity.class);
+        p.putExtra("tweet", Parcels.wrap(tweet));
+        startActivity(p);
     }
 
 }

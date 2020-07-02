@@ -27,7 +27,7 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
     public static final int RADIUS = 30;
-    public static final int MARGIN = 10;
+    public static final int MARGIN = 0;
 
     Context context;
     List<Tweet> tweets;

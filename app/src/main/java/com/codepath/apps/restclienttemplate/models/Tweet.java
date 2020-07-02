@@ -42,6 +42,12 @@ public class Tweet {
     @ColumnInfo
     public String mediaUrl;
 
+    /*@ColumnInfo
+    public Integer favorite;
+
+    @ColumnInfo
+    public int retweet;*/
+
 
 
     // empty constructor needed by the Parceler library
@@ -70,6 +76,9 @@ public class Tweet {
                 tweet.mediaType=null;
                 tweet.mediaUrl= null;
             }
+            /*tweet.favorite=jsonObject.getInt("favorite_count");
+            tweet.retweet= jsonObject.getInt("retweet_count");*/
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

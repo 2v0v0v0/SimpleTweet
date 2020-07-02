@@ -1,8 +1,11 @@
 package com.codepath.apps.restclienttemplate.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -11,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.databinding.ActivityTweetDetailBinding;
+import com.codepath.apps.restclienttemplate.models.Time;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import org.parceler.Parcels;
@@ -55,8 +59,29 @@ public class TweetDetailActivity extends AppCompatActivity {
         binding.tvName.setText(tweet.user.name);
         binding.tvScreenName.setText("@" + tweet.user.screenName);
 
+        Time time = new Time ();
+        binding.tvTime.setText(time.getRelativeTimeAgo(tweet.createdAt));
 
 
 
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_tweet_detail, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.home){
+            //Compose icon has been selected
+            //Navigate to the compose activity
+            Intent intent = new Intent(this, TimelineActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

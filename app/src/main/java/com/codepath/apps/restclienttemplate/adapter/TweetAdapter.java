@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.codepath.apps.restclienttemplate.R;
+import com.codepath.apps.restclienttemplate.databinding.ItemTweetBinding;
+import com.codepath.apps.restclienttemplate.models.Time;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import java.text.ParseException;
@@ -30,6 +32,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
     Context context;
     List<Tweet> tweets;
     OnTweetListener mOnTweetListener;
+    Time time = new Time();
 
     //Pass in the context and list of tweets
     public TweetAdapter(Context context, List<Tweet> tweets, OnTweetListener onTweetListener) {
@@ -61,21 +64,6 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
         return tweets.size();
     }
 
-    public String getRelativeTimeAgo(String rawJsonDate) {
-        String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
-        SimpleDateFormat sf = new SimpleDateFormat(twitterFormat, Locale.ENGLISH);
-        sf.setLenient(true);
-
-        String relativeDate = "";
-        try {
-            long dateMillis = sf.parse(rawJsonDate).getTime();
-            relativeDate = DateUtils.getRelativeTimeSpanString(dateMillis,
-                    System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS, DateUtils.FORMAT_ABBREV_RELATIVE).toString();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return relativeDate;
-    }
 
     // Clean all elements of the recycler
     public void clear() {
@@ -91,40 +79,34 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
     //Define a view holder
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        ImageView ivProfileImage, ivMedia;
-        TextView tvScreenName, tvName, tvBody, tvTime;
+        final ItemTweetBinding binding;
         OnTweetListener onTweetListener;
 
 
         public ViewHolder(@NonNull View itemView, OnTweetListener onTweetListener) {
             super(itemView);
-            ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
-            ivMedia = itemView.findViewById(R.id.ivMedia);
-            tvScreenName = itemView.findViewById(R.id.tvScreenName);
-            tvBody = itemView.findViewById(R.id.tvBody);
-            tvTime = itemView.findViewById(R.id.tvTime);
-            tvName = itemView.findViewById(R.id.tvName);
+            binding = ItemTweetBinding.bind(itemView);
             this.onTweetListener = onTweetListener;
 
             itemView.setOnClickListener(this);
         }
 
         public void bind (Tweet tweet){
-            tvBody.setText(tweet.body);
-            tvScreenName.setText("@"+tweet.user.screenName);
-            tvName.setText(tweet.user.name);
-            tvTime.setText(getRelativeTimeAgo(tweet.createdAt));
+            binding.tvBody.setText(tweet.body);
+            binding.tvScreenName.setText("@"+tweet.user.screenName);
+            binding.tvName.setText(tweet.user.name);
+            binding.tvTime.setText(time.getRelativeTimeAgo(tweet.createdAt));
             Glide.with(context).load(tweet.user.profileImageUrl).
-                    transform(new RoundedCornersTransformation(100, MARGIN)).into(ivProfileImage);
+                    transform(new RoundedCornersTransformation(100, MARGIN)).into(binding.ivProfileImage);
 
             if (tweet.mediaUrl!=null && tweet.mediaType.equals("photo")){
-                ivMedia.setVisibility(View.VISIBLE);
+                binding.ivMedia.setVisibility(View.VISIBLE);
                 Glide.with(context)
                        .load(tweet.mediaUrl)
                         .centerCrop().transform(new RoundedCornersTransformation(RADIUS, MARGIN))
-                        .into(ivMedia);
+                        .into(binding.ivMedia);
             }else{
-                ivMedia.setVisibility(View.GONE);
+                binding.ivMedia.setVisibility(View.GONE);
             }
             Log.i("TweetAdapter", tweet.toString());
         }

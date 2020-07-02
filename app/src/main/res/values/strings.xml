@@ -8,6 +8,7 @@
     <string name="tweet">Tweet</string>
     <string name="tweetEmpty">Sorry, your tweet cannot be empty</string>
     <string name="tweetLong">Sorry, your tweet is too long</string>
+    <string name="tweetHint">What\'s happening?</string>
 
 
 </resources>

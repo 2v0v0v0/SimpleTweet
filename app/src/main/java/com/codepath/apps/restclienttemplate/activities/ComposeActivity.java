@@ -41,6 +41,11 @@ public class ComposeActivity extends AppCompatActivity {
 
         etCompose = findViewById(R.id.etCompose);
         btnTweet = findViewById(R.id.btnTweet);
+        String at = getIntent().getStringExtra("reply_to_name");
+
+        if(!at.isEmpty()){
+            etCompose.setText("@"+at);
+        }
 
         //Set click listener on button
         btnTweet.setOnClickListener(new View.OnClickListener() {
@@ -55,7 +60,6 @@ public class ComposeActivity extends AppCompatActivity {
                     Snackbar.make(view, R.string.tweetLong, Snackbar.LENGTH_LONG).show();
                     return;
                 }
-                Toast.makeText(ComposeActivity.this, tweetContent,Toast.LENGTH_LONG).show();
 
                 //make an API call to Twitter to publish the tweet
                 client.publishTweet(tweetContent, new JsonHttpResponseHandler() {

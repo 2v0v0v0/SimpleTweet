@@ -120,6 +120,7 @@ public class TimelineActivity extends AppCompatActivity implements TweetAdapter.
             //Compose icon has been selected
             //Navigate to the compose activity
             Intent intent = new Intent(this, ComposeActivity.class);
+            intent.putExtra("reply_to_name", "");
             startActivityForResult(intent,REQUEST_CODE);
             return true;
         }
@@ -215,6 +216,11 @@ public class TimelineActivity extends AppCompatActivity implements TweetAdapter.
         intent.putExtra("tweet", Parcels.wrap(clickedTweet));
         startActivity(intent);
         Log.d(TAG, "clicked tweet at " +position);
-
     }
+
+    /*@Override
+    public void onFavoriteClick(int position) {
+        //Handle the action
+        Log.i(TAG, "Favorite of "+position+" clicked");
+    }*/
 }

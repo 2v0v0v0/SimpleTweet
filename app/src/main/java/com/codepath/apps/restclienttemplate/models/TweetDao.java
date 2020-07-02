@@ -14,7 +14,7 @@ public interface TweetDao {
             "Tweet.mediaType AS tweet_mediaType, Tweet.mediaType AS tweet_mediaUrl, " +
 //            "Tweet.favorite AS tweet_favorite, Tweet.retweet AS tweet_retweet, " +
             " User.* " +
-            "FROM Tweet INNER JOIN User ON Tweet.userId = User.id ORDER BY Tweet.createdAt DESC LIMIT 5")
+            "FROM Tweet INNER JOIN User ON Tweet.userId = User.id ORDER BY Tweet.createdAt DESC LIMIT 10")
 
     List<TweetWithUser> recentItem();
 

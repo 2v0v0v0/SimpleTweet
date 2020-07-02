@@ -71,47 +71,48 @@
         tools:text="Hello! I wish you have an awesome day today." />
 
     <ImageButton
-        android:id="@+id/ibFavorite"
+        android:id="@+id/ibRetweet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ivMedia"
         android:layout_alignStart="@+id/tvBody"
         android:layout_marginTop="10dp"
         android:backgroundTint="@android:color/transparent"
-        app:srcCompat="@drawable/ic_vector_heart_stroke" />
+        app:srcCompat="@drawable/ic_vector_retweet_stroke" />
 
     <TextView
-        android:id="@+id/tvFavorite"
+        android:id="@+id/tvRetweet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ivMedia"
        android:textSize="16sp"
         android:layout_marginStart="-5dp"
         android:layout_marginTop="10dp"
-        android:layout_toEndOf="@+id/ibFavorite"
+        android:layout_toEndOf="@+id/ibRetweet"
         android:paddingTop="10dp"
         tools:text="500K" />
 
     <ImageButton
-        android:id="@+id/ibRetweet"
+        android:id="@+id/ibFavorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tvFavorite"
+        android:layout_alignStart="@+id/tvRetweet"
         android:layout_below="@+id/ivMedia"
         android:layout_marginTop="10dp"
         android:layout_marginStart="60dp"
         android:layout_centerVertical="true"
         android:backgroundTint="@android:color/transparent"
-        app:srcCompat="@drawable/ic_vector_retweet_stroke" />
+        app:srcCompat="@drawable/ic_vector_heart_stroke"
+        android:onClick="onFavClick"/>
     <TextView
-        android:id="@+id/tvRetweet"
+        android:id="@+id/tvFavorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ivMedia"
         android:textSize="16sp"
         android:layout_marginStart="-5dp"
         android:layout_marginTop="10dp"
-        android:layout_toEndOf="@+id/ibRetweet"
+        android:layout_toEndOf="@+id/ibFavorite"
         android:paddingTop="10dp"
         tools:text="500K" />
 

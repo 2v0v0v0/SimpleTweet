@@ -83,12 +83,21 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
         OnTweetListener onTweetListener;
 
 
-        public ViewHolder(@NonNull View itemView, OnTweetListener onTweetListener) {
+        public ViewHolder(@NonNull View itemView, final OnTweetListener onTweetListener) {
             super(itemView);
             binding = ItemTweetBinding.bind(itemView);
             this.onTweetListener = onTweetListener;
 
             itemView.setOnClickListener(this);
+            /*binding.tvFavorite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onTweetListener.onFavoriteClick(getAdapterPosition());
+                    Log.i("FAV","fav clicked");
+                }
+            });*/
+
+
         }
 
         public void bind (Tweet tweet){
@@ -96,6 +105,8 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
             binding.tvScreenName.setText("@"+tweet.user.screenName);
             binding.tvName.setText(tweet.user.name);
             binding.tvTime.setText(time.getRelativeTimeAgo(tweet.createdAt));
+            binding.tvRetweet.setText(String.format("%d",tweet.retweet));
+            binding.tvFavorite.setText(String.format("%d",tweet.favorite));
             Glide.with(context).load(tweet.user.profileImageUrl).
                     transform(new RoundedCornersTransformation(100, MARGIN)).into(binding.ivProfileImage);
 
@@ -114,10 +125,17 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
         @Override
         public void onClick(View view) {
             onTweetListener.onTweetClick(getAdapterPosition());
+           // onTweetListener.onFavoriteClick(getAdapterPosition());
+        }
+
+        public void onFavClick (View view){
+            Log.i("FAV", "Favorite of "+getAdapterPosition()+" clicked");
         }
     }
 
     public interface OnTweetListener{
         void onTweetClick (int position);
+        //void onFavoriteClick(int position);
     }
+
 }

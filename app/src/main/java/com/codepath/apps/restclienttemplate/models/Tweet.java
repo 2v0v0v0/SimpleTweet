@@ -42,11 +42,11 @@ public class Tweet {
     @ColumnInfo
     public String mediaUrl;
 
-    /*@ColumnInfo
-    public Integer favorite;
+    @Ignore
+    public int favorite;
 
-    @ColumnInfo
-    public int retweet;*/
+    @Ignore
+    public int retweet;
 
 
 
@@ -76,8 +76,8 @@ public class Tweet {
                 tweet.mediaType=null;
                 tweet.mediaUrl= null;
             }
-            /*tweet.favorite=jsonObject.getInt("favorite_count");
-            tweet.retweet= jsonObject.getInt("retweet_count");*/
+            tweet.favorite=jsonObject.getInt("favorite_count");
+            tweet.retweet= jsonObject.getInt("retweet_count");
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -98,9 +98,6 @@ public class Tweet {
 
     @Override
     public String toString() {
-        if(mediaUrl != null){
-            return "Tweet{" + body + ", " +mediaUrl +", "+ mediaType+"}";
-        }
-        return "Tweet{ }\n";
+        return String.format("Tweet{%d, %d, %s, %s}", favorite,retweet,mediaType ,mediaUrl);
     }
 }

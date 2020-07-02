@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
@@ -25,6 +26,7 @@ public class TweetDetailActivity extends AppCompatActivity {
     public static final String TAG = "TweetDetailActivity";
     public static final int RADIUS = 30;
     public static final int MARGIN = 10;
+    private final int COMPOSE_REQUEST_CODE = 20;
     Tweet tweet = null;
 
 
@@ -39,12 +41,11 @@ public class TweetDetailActivity extends AppCompatActivity {
         Log.i(TAG, String.format("Tweet: %s, %s",tweet.body, tweet.mediaUrl));
 
         if(tweet!=null) {
-            Log.i(TAG, "if 1 " +tweet.mediaUrl);
+//            Log.i(TAG, "if 1 " +tweet.mediaUrl);
             if (tweet.mediaUrl != null && tweet.mediaType != null) {
-                Log.i(TAG, "if 2 " +tweet.mediaUrl);
+//                Log.i(TAG, "if 2 " +tweet.mediaUrl);
                 if (tweet.mediaType.equals("photo")) {
-
-                    Log.i(TAG, "if 3 " +tweet.mediaUrl);
+//                    Log.i(TAG, "if 3 " +tweet.mediaUrl);
                     binding.ivMedia.setVisibility(View.VISIBLE);
                     Glide.with(getApplicationContext())
                             .load(tweet.mediaUrl).fitCenter()
@@ -58,13 +59,10 @@ public class TweetDetailActivity extends AppCompatActivity {
         binding.tvBody.setText(tweet.body);
         binding.tvName.setText(tweet.user.name);
         binding.tvScreenName.setText("@" + tweet.user.screenName);
-
         Time time = new Time ();
         binding.tvTime.setText(time.getRelativeTimeAgo(tweet.createdAt));
-
-
-
-
+        binding.faviroteCount.setText(String.format("%d",tweet.favorite));
+        binding.retweetCount.setText(String.format("%d",tweet.retweet));
     }
 
     @Override
@@ -84,4 +82,13 @@ public class TweetDetailActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void onReply(View view){
+        Intent i = new Intent(this, ComposeActivity.class);
+        i.putExtra("reply_to_name", tweet.user.screenName);
+        startActivity(i);
+        finish();
+
+    }
+
 }

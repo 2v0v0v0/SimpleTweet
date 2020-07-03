@@ -1,8 +1,8 @@
-# Project 3 - *Hoot Hoot*
+# Project 3 - *Twittity*
 
-**Hoot Hoot** is an android app that allows a user to view their Twitter timeline and post a new tweet. The app utilizes [Twitter REST API](https://dev.twitter.com/rest/public).
+**Twittity** is an android app that allows a user to view their Twitter timeline and post a new tweet. The app utilizes [Twitter REST API](https://dev.twitter.com/rest/public).
 
-Time spent: **X** hours spent in total
+Time spent: **45** hours spent in total
 
 ## User Stories
 
@@ -29,7 +29,7 @@ The following **required** functionality is completed:
 
 The following **stretch** features are implemented:
 
-* [ ] User is using **"Twitter branded" colors and styles**
+* [x] User is using **"Twitter branded" colors and styles**
 * [ ] User sees an **indeterminate progress indicator** when any background or network task is happening
 * [x] User can **select "reply" from detail view to respond to a tweet**
   * [x] User that wrote the original tweet is **automatically "@" replied in compose**
@@ -53,9 +53,10 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='demo1.gif' width='300'/>
+<img src='demo2.gif'width='300'/>
 
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
+GIF created with [Recordit](hhttps://recordit.co/).
 
 ## Notes
 
